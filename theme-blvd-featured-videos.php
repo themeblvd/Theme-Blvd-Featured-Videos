@@ -61,13 +61,20 @@ add_filter( 'themeblvd_post_meta', 'themeblvd_fv_post_meta' );
 
 /* Add filter to framework's featured image output */
 
-function themeblvd_fv_display_video( $output ) {
+function themeblvd_fv_display_video( $input, $location, $size ) {
+	
 	global $post;
+
+	// Check for mini thumbnail
+	if( strpos($size, 'square_') )
+		return $input;
+
+	$output = '';
 	$replace = get_post_meta( $post->ID, '_tb_fv_replace', true );
 	if( $replace == 'true' ) {
 		$video_url = get_post_meta( $post->ID, '_tb_fv_url', true );
 		if( $video_url ) {
-			$output  = '<div class="featured-image-wrapper attachment-medium">';
+			$output .= '<div class="featured-image-wrapper attachment-medium">';
 			$output .= '<div class="featured-image">';
 			$output .= '<div class="featured-image-inner">';
 			$output .= wp_oembed_get( $video_url );
@@ -78,6 +85,7 @@ function themeblvd_fv_display_video( $output ) {
 			$output = '<p class="warning">'.__( 'Oops! You forgot to input a video URL to replace the featured image with.', 'themeblvd' ).'</p>';
 		}
 	}
+
 	return $output;
 }
-add_filter( 'themeblvd_post_thumbnail', 'themeblvd_fv_display_video' );
+add_filter( 'themeblvd_post_thumbnail', 'themeblvd_fv_display_video', 10, 3 );
