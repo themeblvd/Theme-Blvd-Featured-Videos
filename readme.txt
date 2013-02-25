@@ -3,7 +3,7 @@ Contributors: themeblvd
 Tags: themeblvd, video, portfolio, featured
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 When using a theme with Theme Blvd framework version 2.0.5+, this plugin is will allow you to replace featured images with videos.
 
@@ -37,6 +37,8 @@ I envision this plugin also being used by people that want to setup some sort of
 3. This is an example of Vimeo video being used in a standard post list. Note that the video will display differently depending on design of the Theme Blvd theme you're using.
 
 == Changelog ==
+
+= 1.0.1 =
 
 = 1.0.0 =
 
