@@ -40,6 +40,9 @@ I envision this plugin also being used by people that want to setup some sort of
 
 = 1.0.1 =
 
+* Added support for smaller, floated thumbnails in a standard post list. Videos will now match thumbnail size.
+* Added protection against mini thumbnails getting replaced by videos (i.e. in mini post lists and grids).
+
 = 1.0.0 =
 
 * This is the first release.

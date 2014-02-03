@@ -12,7 +12,7 @@ License: GPL2
 Copyright 2012 JASON BOBICH
 
 This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as 
+it under the terms of the GNU General Public License, version 2, as
 published by the Free Software Foundation.
 
 This program is distributed in the hope that it will be useful,
@@ -62,28 +62,65 @@ add_filter( 'themeblvd_post_meta', 'themeblvd_fv_post_meta' );
 /* Add filter to framework's featured image output */
 
 function themeblvd_fv_display_video( $input, $location, $size ) {
-	
+
 	global $post;
+	global $_wp_additional_image_sizes;
 
 	// Check for mini thumbnail
-	if( strpos($size, 'square_') )
+	if ( false !== strpos( $size, 'square_' ) ) {
 		return $input;
+	}
 
 	$output = '';
+	$style = '';
 	$replace = get_post_meta( $post->ID, '_tb_fv_replace', true );
+
 	if( $replace == 'true' ) {
+
+		// Vieo URL
 		$video_url = get_post_meta( $post->ID, '_tb_fv_url', true );
+
 		if( $video_url ) {
-			$output .= '<div class="featured-image-wrapper attachment-medium">';
+
+			// For smaller, floated thumbnail sizes
+			if ( $size == 'tb_small' || $size == 'tb_medium' ) {
+
+				if ( isset( $_wp_additional_image_sizes[$size] ) ) {
+					$width = $_wp_additional_image_sizes[$size]['width'];
+					$height = $_wp_additional_image_sizes[$size]['height'];
+				}
+
+				if ( $width && $height ) {
+					$style = sprintf( 'width: %spx; height: %spx;', $width, $height );
+				}
+
+			}
+
+			// Attributes
+			$size_class = $size;
+
+			if ( $size_class == 'tb_small' ) {
+				$size_class = 'small';
+			}
+
+			$output .= '<div class="featured-image-wrapper attachment-'.$size_class.' wp-post-image">';
 			$output .= '<div class="featured-image">';
-			$output .= '<div class="featured-image-inner">';
+			$output .= '<div class="featured-image-inner" style="'.$style.'">';
 			$output .= wp_oembed_get( $video_url );
 			$output .= '</div><!-- .featured-image-inner (end) -->';
 			$output .= '</div><!-- .featured-image (end) -->';
 			$output .= '</div><!-- .featured-image-wrapper (end) -->';
+
 		} else {
+
 			$output = '<p class="warning">'.__( 'Oops! You forgot to input a video URL to replace the featured image with.', 'themeblvd' ).'</p>';
+
 		}
+	} else {
+
+		// Return original input if video option wasn't selected.
+		return $input;
+
 	}
 
 	return $output;
