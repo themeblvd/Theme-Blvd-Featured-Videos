@@ -1,8 +1,6 @@
 === Theme Blvd Featured Videos ===
 Contributors: themeblvd
-Tags: themeblvd, video, portfolio, featured
-Requires at least: 3.2
-Tested up to: 3.3.1
+Tags: themeblvd, video, portfolio, featured, theme blvd
 Stable tag: 1.0.1
 
 When using a theme with Theme Blvd framework version 2.0.5+, this plugin is will allow you to replace featured images with videos.
