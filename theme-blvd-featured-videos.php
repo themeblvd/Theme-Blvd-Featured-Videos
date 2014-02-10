@@ -83,7 +83,7 @@ function themeblvd_fv_display_video( $input, $location, $size ) {
 		if( $video_url ) {
 
 			// For smaller, floated thumbnail sizes
-			if ( $size == 'tb_small' || $size == 'tb_medium' ) {
+			if ( $size == 'tb_small' ) {
 
 				if ( isset( $_wp_additional_image_sizes[$size] ) ) {
 					$width = $_wp_additional_image_sizes[$size]['width'];
