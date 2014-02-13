@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd Featured Videos
 Description: This plugins adds a post option to switch out featured images with a video. Note that your theme must be running Theme Blvd framework version 2.0.5+ for this plugin to work properly.
-Version: 1.0.1
+Version: 1.0.2
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
